@@ -3,6 +3,8 @@ const categoriesContainer = document.getElementById("categories-container");
 const newsCardsContainer = document.getElementById("news-cards-container");
 const modalSection = document.getElementById("modal-section");
 const spinner = document.getElementById("spinner");
+const itemsFoundNumber = document.getElementById("items-found-number");
+const itemsFoundCategory = document.getElementById("items-found-category");
 
 // loadAllCategories() function calls the api for all categories
 const loadAllCategories = () => {
@@ -22,12 +24,13 @@ const displayAllCategories = (categories) => {
   });
 };
 
-//loadAllNewsInACategory() calls the api for all the news of a category
+//loadAllNewsInACategory() calls the api for all the news of a category, it calls the spinner() function and chages the textContent of itemsFoundCategory
 const loadAllNewsInACategory = (categoryId) => {
   toggleSpinner(true);
   fetch(`https://openapi.programming-hero.com/api/news/category/${categoryId}`)
     .then((res) => res.json())
     .then((data) => displayNews(data.data));
+  categoryName(categoryId);
 };
 
 //displayNews() function appends all the elements for news cards
@@ -86,6 +89,28 @@ const displayNews = (newses) => {
     newsCardsContainer.appendChild(newsCard);
   });
   toggleSpinner(false);
+  itemsFoundNumber.textContent = newsCardsContainer.childElementCount;
+};
+
+//this function gets the category name
+const categoryName = (name) => {
+  if (name === "01") {
+    itemsFoundCategory.textContent = "Breaking News";
+  } else if (name === "02") {
+    itemsFoundCategory.textContent = "Regular News";
+  } else if (name === "03") {
+    itemsFoundCategory.textContent = "International News";
+  } else if (name === "04") {
+    itemsFoundCategory.textContent = "Sports";
+  } else if (name === "05") {
+    itemsFoundCategory.textContent = "Entertainment";
+  } else if (name === "06") {
+    itemsFoundCategory.textContent = "Culture";
+  } else if (name === "07") {
+    itemsFoundCategory.textContent = "Arts";
+  } else if (name === "08") {
+    itemsFoundCategory.textContent = "All News";
+  }
 };
 
 //loadNewsDetails() function calls the api for each news article
