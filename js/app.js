@@ -2,13 +2,16 @@
 const categoriesContainer = document.getElementById("categories-container");
 const newsCardsContainer = document.getElementById("news-cards-container");
 const modalSection = document.getElementById("modal-section");
+const spinner = document.getElementById("spinner");
 
+// loadAllCategories() function calls the api for all categories
 const loadAllCategories = () => {
   fetch("https://openapi.programming-hero.com/api/news/categories")
     .then((res) => res.json())
     .then((data) => displayAllCategories(data.data.news_category));
 };
 
+//displayAllCategories() function appends html elements to show news categories
 const displayAllCategories = (categories) => {
   categories.forEach((category) => {
     const CategoryDiv = document.createElement("div");
@@ -19,14 +22,16 @@ const displayAllCategories = (categories) => {
   });
 };
 
+//loadAllNewsInACategory() calls the api for all the news of a category
 const loadAllNewsInACategory = (categoryId) => {
+  toggleSpinner(true);
   fetch(`https://openapi.programming-hero.com/api/news/category/${categoryId}`)
     .then((res) => res.json())
     .then((data) => displayNews(data.data));
 };
 
+//displayNews() function appends all the elements for news cards
 const displayNews = (newses) => {
-  console.log(newses);
   newsCardsContainer.textContent = "";
   newses.forEach((news) => {
     const newsCard = document.createElement("div");
@@ -80,14 +85,17 @@ const displayNews = (newses) => {
     `;
     newsCardsContainer.appendChild(newsCard);
   });
+  toggleSpinner(false);
 };
 
+//loadNewsDetails() function calls the api for each news article
 const loadNewsDetails = (articleId) => {
   fetch(`https://openapi.programming-hero.com/api/news/${articleId}`)
     .then((res) => res.json())
     .then((data) => displayNewsModal(data.data[0]));
 };
 
+//displayNewsModal() appends all the elements to show the article news details in a modal
 const displayNewsModal = (news) => {
   console.log(news);
   const newsModalTitle = document.getElementById("newsModalLabel");
@@ -125,6 +133,15 @@ const displayNewsModal = (news) => {
                     </div>
                   </div>
   `;
+};
+
+//toggleSpinner() function toggles the bootstrap spinner
+const toggleSpinner = (toggle) => {
+  if (toggle) {
+    spinner.classList.remove("d-none");
+  } else {
+    spinner.classList.add("d-none");
+  }
 };
 
 loadAllCategories();
