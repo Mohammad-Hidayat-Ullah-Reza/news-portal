@@ -1,0 +1,10 @@
+.author-img {
+  width: 40px;
+}
+
+.text-overflow-elipsis {
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
