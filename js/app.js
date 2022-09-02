@@ -1,6 +1,7 @@
 //global variable
 const categoriesContainer = document.getElementById("categories-container");
 const newsCardsContainer = document.getElementById("news-cards-container");
+const modalSection = document.getElementById("modal-section");
 
 const loadAllCategories = () => {
   fetch("https://openapi.programming-hero.com/api/news/categories")
@@ -13,12 +14,12 @@ const displayAllCategories = (categories) => {
     const CategoryDiv = document.createElement("div");
     CategoryDiv.classList.add("col");
     CategoryDiv.classList.add("p-1");
-    CategoryDiv.innerHTML = `<p id="${category.category_id}" onclick="loadNews('${category.category_id}')" class="fw-semibold text-black-50">${category.category_name}</p>`;
+    CategoryDiv.innerHTML = `<p id="${category.category_id}" onclick="loadAllNewsInACategory('${category.category_id}')" class="fw-semibold text-black-50">${category.category_name}</p>`;
     categoriesContainer.appendChild(CategoryDiv);
   });
 };
 
-const loadNews = (categoryId) => {
+const loadAllNewsInACategory = (categoryId) => {
   fetch(`https://openapi.programming-hero.com/api/news/category/${categoryId}`)
     .then((res) => res.json())
     .then((data) => displayNews(data.data));
@@ -45,7 +46,7 @@ const displayNews = (newses) => {
                   class="card-body h-100 d-flex flex-column justify-content-between"
                 >                
                   <div>
-                    <h5 class="card-title display-6 fw-semibold">Card title</h5>
+                    <h5 class="card-title display-6 fw-semibold title-text-overflow-elipsis">${news.title}</h5>
                     <p class="card-text text-overflow-elipsis">
                       ${news.details}
                     </p>
@@ -70,7 +71,8 @@ const displayNews = (newses) => {
                     </div>
                     <div><i class="bi bi-eye me-2"></i>${news.total_view}</div>
                     <div>${news.rating.number}</div>
-                    <div id="${news._id}"><i class="bi bi-arrow-right text-primary"></i></div>
+                    <div id="${news._id}" onclick="loadNewsDetails('${news._id}')"  data-bs-toggle="modal"
+                    data-bs-target="#newsModal"><i class="bi bi-arrow-right text-primary"></i></div>
                   </div>
                 </div>
               </div>
@@ -80,4 +82,50 @@ const displayNews = (newses) => {
   });
 };
 
+const loadNewsDetails = (articleId) => {
+  fetch(`https://openapi.programming-hero.com/api/news/${articleId}`)
+    .then((res) => res.json())
+    .then((data) => displayNewsModal(data.data[0]));
+};
+
+const displayNewsModal = (news) => {
+  console.log(news);
+  const newsModalTitle = document.getElementById("newsModalLabel");
+  newsModalTitle.innerText = `${news.title}`;
+  const newsBody = document.getElementById("news-body");
+  newsBody.innerHTML = `
+    <div class="pb-3"><img src="${news.image_url}" class="img-fluid" /></div>
+    <p>${news.details}</p>
+  `;
+  const newsModalFooter = document.getElementById("news-modal-footer");
+  newsModalFooter.innerHTML = `
+                  <div
+                    class="d-flex justify-content-between align-items-center px-4 pb-3"
+                  >
+                    <div
+                      class="d-flex justify-content-center align-items-center"
+                    >
+                      <div>
+                        <img
+                          src="${news.author.img}"
+                          class="rounded-circle me-3 author-img"
+                          alt=""
+                        />
+                      </div>
+                      <div>
+                        <p class="m-0">${news.author.name}</p>
+                        <p class="m-0 text-black-50">${news.author.published_date}</p>
+                        <p class="m-0 text-black-50"><small>${news.author.published_date}</small></p>
+                      </div>
+                    </div>
+                    <div><i class="bi bi-eye me-2"></i>${news.total_view}</div>
+                    <div>
+                    <div>${news.rating.number}</div>
+                    <div><i class="bi bi-award"></i>${news.rating.badge}</div>
+                    </div>
+                  </div>
+  `;
+};
+
 loadAllCategories();
+loadAllNewsInACategory("08");
