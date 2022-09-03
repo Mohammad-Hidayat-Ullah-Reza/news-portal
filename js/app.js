@@ -26,7 +26,7 @@ const displayAllCategories = (categories) => {
 };
 
 //loadAllNewsInACategory() calls the api for all the news of a category, it calls the spinner() function and chages the textContent of itemsFoundCategory
-const loadAllNewsInACategory = (categoryId) => {
+const loadAllNewsInACategory = (categoryId = "08") => {
   toggleSpinner(true);
   fetch(`https://openapi.programming-hero.com/api/news/category/${categoryId}`)
     .then((res) => res.json())
@@ -38,6 +38,7 @@ const loadAllNewsInACategory = (categoryId) => {
 //displayNews() function appends all the elements for news cards
 const displayNews = (newses) => {
   newsCardsContainer.textContent = "";
+  newses.sort((a, b) => b.total_view - a.total_view);
   newses.forEach((news) => {
     const newsCard = document.createElement("div");
     newsCard.classList.add("card");
@@ -59,7 +60,7 @@ const displayNews = (newses) => {
                     <h5 class="card-title display-6 fw-semibold title-text-overflow-elipsis">${
                       news.title
                     }</h5>
-                    <p class="card-text mb-5 mb-md-0 text-overflow-elipsis">
+                    <p class="card-text mb-5 mb-md-3 text-overflow-elipsis">
                       ${news.details}
                     </p>
                   </div>
@@ -84,7 +85,7 @@ const displayNews = (newses) => {
                         }</p>
                         <p class="m-0 text-black-50">${
                           news.author.published_date
-                            ? news.author.published_date
+                            ? news.author.published_date.split(" ")[0]
                             : "no data available"
                         }</p>
                       </div>
@@ -176,12 +177,12 @@ const displayNewsModal = (news) => {
                         }</p>
                         <p class="m-0 text-black-50">${
                           news.author.published_date
-                            ? news.author.published_date
+                            ? news.author.published_date.split(" ")[0]
                             : "no data available"
                         }</p>
-                        <p class="m-0 text-black-50"><small>${
+                        <p class="m-0 text-black-50"><small>Time: ${
                           news.author.published_date
-                            ? news.author.published_date
+                            ? news.author.published_date.split(" ")[1]
                             : "no data available"
                         }</small></p>
                       </div>
@@ -215,4 +216,4 @@ const toggleSpinner = (toggle) => {
 };
 
 loadAllCategories();
-loadAllNewsInACategory("08");
+loadAllNewsInACategory();
