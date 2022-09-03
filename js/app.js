@@ -17,11 +17,13 @@ const loadAllCategories = () => {
 //displayAllCategories() function appends html elements to show news categories
 const displayAllCategories = (categories) => {
   categories.forEach((category) => {
-    const CategoryDiv = document.createElement("div");
-    CategoryDiv.classList.add("col");
-    CategoryDiv.classList.add("p-1");
-    CategoryDiv.innerHTML = `<p id="${category.category_id}" onclick="loadAllNewsInACategory('${category.category_id}')" class="fw-semibold text-black-50">${category.category_name}</p>`;
-    categoriesContainer.appendChild(CategoryDiv);
+    const categoryDiv = document.createElement("div");
+    categoryDiv.classList.add("col");
+    categoryDiv.classList.add("p-1");
+    categoryDiv.classList.add("category-div");
+
+    categoryDiv.innerHTML = `<p id="${category.category_id}" onclick="loadAllNewsInACategory('${category.category_id}')" class="fw-semibold text-black-50">${category.category_name}</p>`;
+    categoriesContainer.appendChild(categoryDiv);
   });
 };
 
