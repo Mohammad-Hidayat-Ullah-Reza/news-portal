@@ -10,7 +10,8 @@ const itemsFoundCategory = document.getElementById("items-found-category");
 const loadAllCategories = () => {
   fetch("https://openapi.programming-hero.com/api/news/categories")
     .then((res) => res.json())
-    .then((data) => displayAllCategories(data.data.news_category));
+    .then((data) => displayAllCategories(data.data.news_category))
+    .catch((err) => console.log(err));
 };
 
 //displayAllCategories() function appends html elements to show news categories
@@ -29,7 +30,8 @@ const loadAllNewsInACategory = (categoryId) => {
   toggleSpinner(true);
   fetch(`https://openapi.programming-hero.com/api/news/category/${categoryId}`)
     .then((res) => res.json())
-    .then((data) => displayNews(data.data));
+    .then((data) => displayNews(data.data))
+    .catch((err) => console.log(err));
   categoryName(categoryId);
 };
 
@@ -117,7 +119,8 @@ const categoryName = (name) => {
 const loadNewsDetails = (articleId) => {
   fetch(`https://openapi.programming-hero.com/api/news/${articleId}`)
     .then((res) => res.json())
-    .then((data) => displayNewsModal(data.data[0]));
+    .then((data) => displayNewsModal(data.data[0]))
+    .catch((err) => console.log(err));
 };
 
 //displayNewsModal() appends all the elements to show the article news details in a modal
