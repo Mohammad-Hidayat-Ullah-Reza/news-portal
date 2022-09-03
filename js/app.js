@@ -47,7 +47,7 @@ const displayNews = (newses) => {
               <div class="col-md-3 p-3">
                 <img
                   src="${news.thumbnail_url}"
-                  class="img-fluid rounded"
+                  class="w-100 img-md-fluid rounded"
                   alt="..."
                 />
               </div>
@@ -56,13 +56,15 @@ const displayNews = (newses) => {
                   class="card-body h-100 d-flex flex-column justify-content-between"
                 >                
                   <div>
-                    <h5 class="card-title display-6 fw-semibold title-text-overflow-elipsis">${news.title}</h5>
-                    <p class="card-text text-overflow-elipsis">
+                    <h5 class="card-title display-6 fw-semibold title-text-overflow-elipsis">${
+                      news.title
+                    }</h5>
+                    <p class="card-text mb-5 mb-md-0 text-overflow-elipsis">
                       ${news.details}
                     </p>
                   </div>
                   <div
-                    class="d-flex justify-content-between align-items-center"
+                    class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center"
                   >
                     <div
                       class="d-flex justify-content-center align-items-center"
@@ -75,13 +77,31 @@ const displayNews = (newses) => {
                         />
                       </div>
                       <div>
-                        <p class="m-0">${news.author.name}</p>
-                        <p class="m-0 text-black-50">${news.author.published_date}</p>
+                        <p class="m-0">${
+                          news.author.name
+                            ? news.author.name
+                            : "no data available"
+                        }</p>
+                        <p class="m-0 text-black-50">${
+                          news.author.published_date
+                            ? news.author.published_date
+                            : "no data available"
+                        }</p>
                       </div>
                     </div>
-                    <div><i class="bi bi-eye me-2"></i>${news.total_view}</div>
-                    <div>${news.rating.number}</div>
-                    <div id="${news._id}" onclick="loadNewsDetails('${news._id}')"  data-bs-toggle="modal"
+                    <div class="fw-semibold m-2 md:m-0"><i class="bi bi-eye me-2"></i>${
+                      news.total_view ? news.total_view : "no data available"
+                    }</div>
+                    <div class="fw-semibold m-2">Rating: ${
+                      news.rating.number
+                        ? news.rating.number
+                        : "no data available"
+                    }</div>
+                    <div class="m-2 md:m-0" id="${
+                      news._id
+                    }" onclick="loadNewsDetails('${
+      news._id
+    }')"  data-bs-toggle="modal"
                     data-bs-target="#newsModal"><i class="bi bi-arrow-right text-primary"></i></div>
                   </div>
                 </div>
@@ -136,10 +156,10 @@ const displayNewsModal = (news) => {
   const newsModalFooter = document.getElementById("news-modal-footer");
   newsModalFooter.innerHTML = `
                   <div
-                    class="d-flex justify-content-between align-items-center px-4 pb-3"
+                    class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center px-4 pb-3"
                   >
                     <div
-                      class="d-flex justify-content-center align-items-center"
+                      class="d-flex justify-content-center align-items-center my-2 my-md-0"
                     >
                       <div>
                         <img
@@ -149,15 +169,37 @@ const displayNewsModal = (news) => {
                         />
                       </div>
                       <div>
-                        <p class="m-0">${news.author.name}</p>
-                        <p class="m-0 text-black-50">${news.author.published_date}</p>
-                        <p class="m-0 text-black-50"><small>${news.author.published_date}</small></p>
+                        <p class="m-0">${
+                          news.author.name
+                            ? news.author.name
+                            : "no data available"
+                        }</p>
+                        <p class="m-0 text-black-50">${
+                          news.author.published_date
+                            ? news.author.published_date
+                            : "no data available"
+                        }</p>
+                        <p class="m-0 text-black-50"><small>${
+                          news.author.published_date
+                            ? news.author.published_date
+                            : "no data available"
+                        }</small></p>
                       </div>
                     </div>
-                    <div><i class="bi bi-eye me-2"></i>${news.total_view}</div>
+                    <div class="fw-semibold my-2 my-md-0"><i class="bi bi-eye me-2"></i>${
+                      news.total_view ? news.total_view : "no data available"
+                    }</div>
                     <div>
-                    <div>${news.rating.number}</div>
-                    <div><i class="bi bi-award"></i>${news.rating.badge}</div>
+                    <div class="fw-semibold my-2 my-md-0">Rating: ${
+                      news.rating.number
+                        ? news.rating.number
+                        : "no data available"
+                    }</div>
+                    <div class="fw-semibold my-2 my-md-0"><i class="bi bi-award me-1"></i>${
+                      news.rating.badge
+                        ? news.rating.badge
+                        : "no data available"
+                    }</div>
                     </div>
                   </div>
   `;
