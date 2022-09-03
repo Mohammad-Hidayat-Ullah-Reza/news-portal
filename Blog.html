@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- site title -->
+    <title>First-Alo</title>
+    <!-- stylesheet link -->
+    <link rel="stylesheet" href="styles/style.css" />
+    <!-- bootstrap link -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+      crossorigin="anonymous"
+    />
+    <!-- bootstrap icon link -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+    />
+  </head>
+  <body class="bg-light">
+    <!-- header -->
+    <header class="border border-bt border-2">
+      <nav class="navbar navbar-expand-lg bg-light px-4">
+        <div class="container-fluid">
+          <a class="navbar-brand fw-semibold" href="index.html"
+            ><span class="text-white bg-primary px-2 py-1 rounded">First</span>
+            <span class="text-primary">Alo</span></a
+          >
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="collapse navbar-collapse d-lg-flex justify-content-lg-end align-items-lg-center"
+            id="navbarNav"
+          >
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.html"
+                  >News</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Blog.html">Blog</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <section
+        class="container-fluid p-4 d-flex flex-column justify-content-center align-items-center"
+      >
+        <h1
+          class="border-bottom border-solid border-3 border-primary pb-3 w-50 text-center"
+        >
+          Welcome to my blog
+        </h1>
+        <!-- accordion -->
+        <div class="accordion my-5 w-100" id="accordionExample">
+          <!-- 1st accordion -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button
+                class="accordion-button fw-semibold"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseOne"
+                aria-expanded="true"
+                aria-controls="collapseOne"
+              >
+                Differences between var, let, const?
+              </button>
+            </h2>
+            <div
+              id="collapseOne"
+              class="accordion-collapse collapse show"
+              aria-labelledby="headingOne"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                <ul>
+                  <li>
+                    <code>var</code> declarations are globally scoped or
+                    function scoped while <code>let</code> andconst
+                    <code>const</code> are block scoped.
+                  </li>
+                  <li>
+                    <code>var</code> variables can be updated and re-declared
+                    within its scope; <code>let</code> variables can be updated
+                    but not re-declared; <code>const</code> variables can
+                    neither be updated nor re-declared.
+                  </li>
+                  <li>
+                    They are all hoisted to the top of their scope. But while
+                    <code>var</code> variables are initialized with undefined,
+                    <code>let</code> and <code>const</code> variables are not
+                    initialized.
+                  </li>
+                  <li>
+                    While <code>var</code> and <code>let</code> can be declared
+                    without being initialized, <code>const</code> must be
+                    initialized during declaration.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2nd accordion -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button
+                class="accordion-button fw-semibold collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseTwo"
+                aria-expanded="false"
+                aria-controls="collapseTwo"
+              >
+                Differences between arrow function and regular function?
+              </button>
+            </h2>
+            <div
+              id="collapseTwo"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingTwo"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                <ul>
+                  <li>
+                    The arrow function allows a developer to accomplish the same
+                    result with fewer lines of code and approximately half the
+                    typing.
+                  </li>
+                  <li>
+                    Unlike regular functions, arrow functions do not have their
+                    own <code>this</code>. The value of <code>this</code> inside
+                    an arrow function remains the same throughout the lifecycle
+                    of the function and is always bound to the value of
+                    <code>this</code> in the closest non-arrow parent function.
+                  </li>
+                  <li>
+                    Regular functions created using function declarations or
+                    expressions are constructible and callable. Since regular
+                    functions are constructible, they can be called using the
+                    <code>new</code> keyword. However, the arrow functions are
+                    only callable and not constructible, i.e arrow functions can
+                    never be used as constructor functions. Hence, they can
+                    never be invoked with the <code>new</code> keyword.
+                  </li>
+                  <li>
+                    Arrow functions can never have duplicate named parameters,
+                    whether in strict or non-strict mode.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+              <button
+                class="accordion-button fw-semibold collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseThree"
+                aria-expanded="false"
+                aria-controls="collapseThree"
+              >
+                Differences between .map(), .forEach(), .filter(), .find()?
+              </button>
+            </h2>
+            <div
+              id="collapseThree"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingThree"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                <ol>
+                  <li>
+                    <code>.forEach()</code> is used to execute the same code on
+                    every element in an array but does not change the array and
+                    it returns undefined.
+                  </li>
+                  <li>
+                    <code>.map()</code> executes the same code on every element
+                    in an array and returns a new array with the updated
+                    elements.
+                  </li>
+                  <li>
+                    <code>.filter()</code> checks every element in an array to
+                    see if it meets a certain criteria and returns a new array
+                    with the elements that return truthy for the criteria.
+                  </li>
+                  <li>
+                    <code>.find()</code> checks elements in an array and returns
+                    the first element if it is truthy for the criteria.
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFour">
+              <button
+                class="accordion-button fw-semibold collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseFour"
+                aria-expanded="false"
+                aria-controls="collapseFour"
+              >
+                Why should you use template string?
+              </button>
+            </h2>
+            <div
+              id="collapseFour"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingFour"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                Template strings are a powerful feature of modern JavaScript
+                released in ES6. It lets us insert/interpolate variables and
+                expressions into strings without needing to concatenate like in
+                older versions of JavaScript. It allows us to create strings
+                that are complex and contain dynamic elements. We insert a
+                variable or expression by adding a dollar sign
+                <code>$</code> and curly braces <code>{}</code> into the string
+                <code>`${variable}`</code>. This is much better than the
+                alternative in old JavaScript where we had to concatenate a
+                string. Another great feature of template strings is that we can
+                have strings with multiple lines for better code readability.
+                Template strings can be nested in each other. This is a great
+                feature because many people want to create dynamic strings.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- footer -->
+    <footer class="text-center py-4 bg-white">
+      <p class="text-black-50">Copyright 2022 News Portal</p>
+    </footer>
+    <!-- bootstrap link -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
