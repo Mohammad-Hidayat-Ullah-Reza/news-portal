@@ -1,9 +1,7 @@
 #news:hover,
 #blog:hover,
 #news:active,
-#blog:active,
-#01:hover,
-#01:active {
+#blog:active {
   color: blue;
   font-weight: 400;
 }
